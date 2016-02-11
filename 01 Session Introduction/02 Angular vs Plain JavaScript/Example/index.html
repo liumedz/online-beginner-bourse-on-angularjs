@@ -3,6 +3,15 @@
   <head>
     <title>Simple Data Binding App</title>
   </head>
-  <body>
+  <body data-ng-app>
+    <style>
+      body{
+        padding: 200px;
+      }
+    </style>
+    <label>Name</label>
+    <input data-ng-model="name" type="text"/>
+    <h2>Hello {{name}}!</h2>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
   </body>
 </html>
