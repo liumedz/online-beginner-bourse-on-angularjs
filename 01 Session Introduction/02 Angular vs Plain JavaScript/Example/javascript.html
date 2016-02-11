@@ -1,0 +1,32 @@
+<!doctype>
+<html>
+  <head>
+    <title>Simple Data Binding App</title>
+  </head>
+  <body>
+    <style>
+      body{
+        padding: 200px;
+      }
+    </style>
+    <label>Name</label>
+    <input id="input" onkeyup="onKeyUp()" type="text"/>
+    <h2 id="hello">Hello {{name}}!</h2>
+
+    <script>
+
+      var inputElement = document.getElementById("input");
+      var helloElement = document.getElementById("hello");
+      var helloText = helloElement.innerHTML;
+
+      function onKeyUp(){
+        var text = helloElement.innerHTML;
+        helloElement.innerHTML = helloText.replace("{{name}}", inputElement.value);
+      }
+
+      onKeyUp();
+
+    </script>
+
+  </body>
+</html>
