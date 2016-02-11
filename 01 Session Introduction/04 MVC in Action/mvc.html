@@ -1,0 +1,61 @@
+<!doctype>
+<html>
+  <head>
+    <title>Simple Data Binding App</title>
+  </head>
+  <body>
+    <style>
+        body{
+          padding: 200px;
+        }
+    </style>
+
+    <label>Name</label>
+    <input id="input" onkeyup="ctrl.onKeyUp(event)" type="text"/>
+    <div id="template"></div>
+    <img src="http://www.joshholmes.com/blog/content/binary/WindowsLiveWriter/BuildingaSimplePhotoGall.NETMVCFramework_113D2/image_6.png"/>
+
+
+    <script>
+
+      function View(template){
+        this.template = template;
+        this.element = document.getElementById("template");
+      }
+
+      View.prototype = {
+
+        render: function(model){
+          var template = this.template;
+          for(var propertyName in model) {
+            template = template.replace("{{" + propertyName + "}}", model[propertyName]);
+          }
+          this.element.innerHTML = template;
+        }
+
+      }
+
+      function Controller(model, view){
+        this.model = model;
+        this.view = view;
+        view.render(this.model);
+      }
+
+      Controller.prototype = {
+
+        onKeyUp: function(element){
+          this.model.name = element.target.value;
+          view.render(this.model);
+        },
+
+      }
+
+      var model = {name: "Thom Petterson"}
+      var template = '<h2 id="hello">Hello {{name}}!</h2>';
+      var view = new View(template);
+      var ctrl = new Controller(model, view);
+
+    </script>
+
+  </body>
+</html>
