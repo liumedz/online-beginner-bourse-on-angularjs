@@ -1,30 +1,32 @@
-<!doctype>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Data Binding App</title>
+    <meta charset="utf-8">
+    <title>Hello Plain JavaScript app!</title>
   </head>
   <body>
-    <style>
-      body{
-        padding: 200px;
-      }
-    </style>
-    <label>Name</label>
-    <input id="input" onkeyup="onKeyUp()" type="text"/>
-    <h2 id="hello">Hello {{name}}!</h2>
 
-    <script>
+    <style media="screen"> body{ padding: 100px; zoom: 200%; }</style>
 
-      var inputElement = document.getElementById("input");
-      var helloElement = document.getElementById("hello");
-      var helloText = helloElement.innerHTML;
+    <label for="">Name</label>
+    <input id="input" type="text" name="name" value="" onkeyup="onKeyUp()">
+    <span id="span"> Hello {{name}}!</span>
 
-      function onKeyUp(){
-        var text = helloElement.innerHTML;
-        helloElement.innerHTML = helloText.replace("{{name}}", inputElement.value);
-      }
+    <script type="text/javascript">
+       var inputField = document.getElementById("input");
+       var spanElement = document.getElementById("span");
+       var text = spanElement.innerHTML;
 
-      onKeyUp();
+       function changeText(){
+          spanElement.innerHTML = text.replace("{{name}}", inputField.value);
+       }
+
+       function onKeyUp(){
+         changeText();
+       }
+
+       changeText();
+
 
     </script>
 
